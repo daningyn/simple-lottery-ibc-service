@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const { setupSocket } = require('./socket');
+const _ = require('lodash');
+
 const app = express();
 app.use(cors())
 
@@ -13,6 +15,8 @@ const io = new Server(server, {
         methods: ["GET", "POST"],
     },
 });
+
+const CURRENT_NETWORKS = ['OP', 'BASE'];
 
 var numberOfRewards;
 var numberOfChallenges;
@@ -88,7 +92,10 @@ app.post('/api/start', (req, res) => {
 })
 
 const randomDirection = () => {
-
+    let randomNetworks = _.sampleSize(CURRENT_NETWORKS, 2);
+    randomNetworks = _.shuffle(randomNetworks);
+    const direction = _.join(randomNetworks, '');
+    return direction;
 }
 
 setupSocket(io, getNextAnnouncement);

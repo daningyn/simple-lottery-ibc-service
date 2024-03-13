@@ -17,6 +17,7 @@
     "fs": "^0.0.1-security",
     "http": "^0.0.1-security",
     "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "nodemon": "^3.0.1",
     "socket.io": "^4.7.4",
